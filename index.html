@@ -1,15 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bakery Gaby</title>
-    <link rel="stylesheet" href="styles/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gaby Bakery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/styles.css">
 </head>
-<body>
-    <header>
+<body id="inicio">
 
-    </header>
+  <!-- ================= FONDO ================= -->
+  <div class="fondo" id="fondo">
+    <img src="assets/image10.png" alt="fondo_p">
+  </div>
+
+  <!-- ================= HEADER ================= -->
+  <header class="header" id="header">
+    <div class="header__marca">
+      <img class="header__logo" id="logo-pequeno" src="assets/logo.png" alt="Icono Gaby Bakery">
+      <img class="header__logo-texto" id="logo-texto" src="assets/logotipo.png" alt="Gaby Bakery">
+    </div>
+
+    <nav class="header__nav" id="menu">
+      <a class="header__enlace" href="#resenas">Reseñas</a>
+      <a class="header__enlace" href="#distribuidor">Distribuidor</a>
+      <a class="boton boton--header" id="boton-pide" href="#pedido">pide aquí</a>
+    </nav>
+  </header>
+
+  <main class="principal" id="principal">
+
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="hero">
+      <img class="hero__logo" id="logo-grande" src="assets/logo.png" alt="Gaby Bakery">
+
+      <p class="hero__texto" id="descripcion">
+        En nuestra panadería elaboramos productos frescos y deliciosos con
+        ingredientes de calidad y mucho cariño. Puedes encontrar panes recién
+        horneados, pasteles, postres y diferentes opciones para disfrutar en
+        cualquier momento del día.
+      </p>
+
+      <img class="hero__gato" id="gato-pan" src="assets/Pan gato de acuarela kawaii.png" alt="Gato pan">
+    </section>
+
+    <!-- ================= PRODUCTOS (rombos) ================= -->
+    <section class="productos" id="productos">
+
+      <!-- Producto 1: Churros -->
+      <article class="producto producto--claro producto--izquierda" id="producto-churros">
+        <div class="producto__rombo"></div>
+        <div class="producto__contenido">
+          <img class="producto__imagen" id="imagen-churros" src="assets/churro.png" alt="Churros">
+          <h2 class="producto__titulo">Churros</h2>
+          <p class="producto__texto">Texto para lo que quieras ampliar sobre el punto principal.</p>
+        </div>
+      </article>
+
+      <!-- Producto 2: Pan Ocañero -->
+      <article class="producto producto--oscuro producto--derecha" id="producto-ocanero">
+        <div class="producto__rombo"></div>
+        <div class="producto__contenido">
+          <img class="producto__imagen" id="imagen-ocanero" src="assets/blanco.png" alt="Pan Ocañero">
+          <h2 class="producto__titulo">Pan Ocañero</h2>
+          <p class="producto__texto">Texto para lo que quieras agregar al subtítulo.</p>
+        </div>
+      </article>
+
+      <!-- Producto 3: Tostadas -->
+      <article class="producto producto--claro producto--izquierda" id="producto-tostadas">
+        <div class="producto__rombo"></div>
+        <div class="producto__contenido">
+          <img class="producto__imagen" id="imagen-tostadas" src="assets/tostas.jpeg" alt="Tostadas">
+          <h2 class="producto__titulo">Tostadas</h2>
+          <p class="producto__texto">Texto para algo más que quieras compartir.</p>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Secciones que enlaza el menú (puedes llenarlas después) -->
+    <section class="seccion" id="resenas"></section>
+    <section class="seccion" id="distribuidor"></section>
+    <section class="seccion" id="pedido"></section>
+
+  </main>
 
     <section>
         <h3>Formas de pedido</h3>

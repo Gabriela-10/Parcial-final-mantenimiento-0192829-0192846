@@ -1,3 +1,176 @@
+/* ========== VARIABLES ========== */
+:root {
+  --cafe-oscuro: #5a3328;
+  --cafe-medio: #8a5a44;
+  --beige: #c9a98a;
+  --crema: #f3ece4;
+  --fuente: "Playfair Display", Georgia, serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--fuente);
+  color: var(--cafe-oscuro);
+  background: var(--crema);
+  max-width: 480px;           /* vista tipo móvil; quita esto para escritorio */
+  margin: 0 auto;
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ========== FONDO ========== */
+.fondo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* 🖼️ IMAGEN 1: cambia la ruta de tu foto de fondo */
+  background: url("img/fondo.jpg") center top / cover no-repeat;
+  opacity: .35;
+}
+/* desvanecido hacia crema abajo */
+.fondo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 55%, var(--crema) 100%);
+}
+
+/* ========== HEADER ========== */
+.header {
+  position: sticky;
+  top: 8px;
+  z-index: 10;
+  margin: 8px 6px 0;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(#a9806a, #8a5a44);
+  border-radius: 12px;
+}
+.header__marca { display: flex; align-items: center; gap: 10px; }
+.header__logo { height: 42px; }
+.header__logo-texto { height: 34px; }
+
+.header__nav { display: flex; align-items: center; gap: 14px; }
+.header__enlace {
+  color: #4a1f1f;
+  text-decoration: none;
+  font-size: .8rem;
+}
+
+.boton {
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 999px;
+  font-family: var(--fuente);
+}
+.boton--header {
+  background: var(--cafe-oscuro);
+  color: #fff;
+  padding: 6px 14px;
+  font-size: .8rem;
+}
+
+/* ========== HERO ========== */
+.hero {
+  position: relative;
+  padding: 40px 28px 20px;
+  text-align: center;
+}
+.hero__logo { width: 190px; max-width: 60%; }
+.hero__texto {
+  margin: 12px auto 0;
+  max-width: 270px;
+  font-size: .85rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+.hero__gato {
+  position: absolute;
+  right: 18px;
+  bottom: -70px;
+  width: 60px;
+}
+
+/* ========== PRODUCTOS ========== */
+.productos {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 40px 0 80px;
+}
+
+.producto {
+  position: relative;
+  width: 270px;
+  height: 270px;
+  margin-bottom: -10px;
+}
+.producto--izquierda { align-self: flex-start; margin-left: -20px; }
+.producto--derecha   { align-self: flex-end;   margin-right: -20px; }
+
+/* El rombo = cuadrado girado 45° */
+.producto__rombo {
+  position: absolute;
+  inset: 25px;
+  transform: rotate(45deg);
+  border-radius: 6px;
+}
+.producto--claro  .producto__rombo { background: var(--beige); }
+.producto--oscuro .producto__rombo { background: var(--cafe-oscuro); }
+
+.producto__contenido {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 40px 0;
+  text-align: center;
+}
+
+.producto__imagen {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 3px solid var(--cafe-oscuro);
+}
+.producto--oscuro .producto__imagen { border-color: #3b2018; }
+
+.producto__titulo {
+  margin-top: 8px;
+  font-size: .85rem;
+  font-weight: 600;
+}
+.producto--claro  .producto__titulo { color: var(--cafe-oscuro); }
+.producto--oscuro .producto__titulo { color: #fff; }
+
+.producto__texto {
+  margin-top: 6px;
+  font-size: .78rem;
+  line-height: 1.25;
+}
+.producto--claro  .producto__texto { color: var(--cafe-medio); }
+.producto--oscuro .producto__texto { color: var(--beige); }
+
+/* ========== SECCIONES VACÍAS ========== */
+.seccion { min-height: 40px; }
+
+/* ========== ESCRITORIO (opcional) ========== */
+@media (min-width: 900px) {
+  body { max-width: 1100px; }
+  .productos { flex-direction: row; justify-content: center; gap: 20px; }
+  .producto, .producto--izquierda, .producto--derecha {
+    align-self: auto; margin: 0;
+  }
+}
+/*------------------------------------------------------------------------*/
 footer{
     background-color: rgba(172, 128, 103, 1);
 
