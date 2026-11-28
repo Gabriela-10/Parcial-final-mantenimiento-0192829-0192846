@@ -15,7 +15,6 @@ body {
   font-family: var(--fuente);
   color: var(--cafe-oscuro);
   background: var(--crema);
-  max-width: 480px;           /* vista tipo móvil; quita esto para escritorio */
   margin: 0 auto;
   position: relative;
   min-height: 100vh;
@@ -28,16 +27,20 @@ body {
   position: absolute;
   inset: 0;
   z-index: -1;
-  /* 🖼️ IMAGEN 1: cambia la ruta de tu foto de fondo */
-  background: url("img/fondo.jpg") center top / cover no-repeat;
   opacity: .35;
+}
+.fondo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 /* desvanecido hacia crema abajo */
 .fondo::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent 55%, var(--crema) 100%);
+  background: linear-gradient(to bottom, transparent 80%, var(--crema) 50%);
 }
 
 /* ========== HEADER ========== */
@@ -52,9 +55,10 @@ body {
   justify-content: space-between;
   background: linear-gradient(#a9806a, #8a5a44);
   border-radius: 12px;
+
+  
 }
 .header__marca { display: flex; align-items: center; gap: 10px; }
-.header__logo { height: 42px; }
 .header__logo-texto { height: 34px; }
 
 .header__nav { display: flex; align-items: center; gap: 14px; }
@@ -99,45 +103,50 @@ body {
 }
 
 /* ========== PRODUCTOS ========== */
+/* ========== PRODUCTOS ========== */
 .productos {
   display: flex;
   flex-direction: column;
   gap: 0;
   padding: 40px 0 80px;
+  overflow: hidden;            /* evita que los rombos generen scroll horizontal */
 }
 
 .producto {
   position: relative;
-  width: 270px;
-  height: 270px;
-  margin-bottom: -10px;
+  width: min(300px, 82vw);
+  aspect-ratio: 1;
+  margin-bottom: -40px;        /* los rombos encajan entre sí */
 }
-.producto--izquierda { align-self: flex-start; margin-left: -20px; }
-.producto--derecha   { align-self: flex-end;   margin-right: -20px; }
+.producto--izquierda { align-self: flex-start; margin-left: 0; }
+.producto--derecha   { align-self: flex-end;   margin-right: 0; }
 
-/* El rombo = cuadrado girado 45° */
+/* El rombo = cuadrado girado 45°, reducido para que su diagonal quepa */
 .producto__rombo {
   position: absolute;
-  inset: 25px;
+  inset: 15%;                  /* 70% del lado; diagonal ≈ 99% del contenedor */
   transform: rotate(45deg);
-  border-radius: 6px;
+  border-radius: 8px;
 }
 .producto--claro  .producto__rombo { background: var(--beige); }
 .producto--oscuro .producto__rombo { background: var(--cafe-oscuro); }
 
+/* Contenido centrado vertical y horizontalmente */
 .producto__contenido {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 28px 40px 0;
+  justify-content: center;     /* antes estaba pegado arriba */
+  padding: 0 22%;
   text-align: center;
 }
 
 .producto__imagen {
-  width: 96px;
-  height: 96px;
+  width: 30%;
+  height: auto;
+  aspect-ratio: 1;
   object-fit: cover;
   border-radius: 14px;
   border: 3px solid var(--cafe-oscuro);
@@ -145,33 +154,23 @@ body {
 .producto--oscuro .producto__imagen { border-color: #3b2018; }
 
 .producto__titulo {
-  margin-top: 8px;
-  font-size: .85rem;
+  margin-top: 6px;
+  font-size: .9rem;
   font-weight: 600;
 }
-.producto--claro  .producto__titulo { color: var(--cafe-oscuro); }
-.producto--oscuro .producto__titulo { color: #fff; }
-
 .producto__texto {
-  margin-top: 6px;
-  font-size: .78rem;
+  margin-top: 4px;
+  font-size: .72rem;
   line-height: 1.25;
 }
-.producto--claro  .producto__texto { color: var(--cafe-medio); }
-.producto--oscuro .producto__texto { color: var(--beige); }
-
+.producto--oscuro .producto__titulo { color: var(--crema); }
+.producto--oscuro .producto__texto { color: var(--crema); }
 /* ========== SECCIONES VACÍAS ========== */
-.seccion { min-height: 40px; }
+.seccion { min-height: 6px; }
 
 /* ========== ESCRITORIO (opcional) ========== */
-@media (min-width: 900px) {
-  body { max-width: 1100px; }
-  .productos { flex-direction: row; justify-content: center; gap: 20px; }
-  .producto, .producto--izquierda, .producto--derecha {
-    align-self: auto; margin: 0;
-  }
-}
-/*------------------------------------------------------------------------*/
+
+
 
 /*--------pedidos y historia---------*/
 
@@ -188,7 +187,7 @@ body {
     /*---pa q sea transparentoso---*/
     background-color: var(--beige);
     background-image:
-        linear-gradient(rgba(227, 211, 187, 0.6), rgba(227, 211, 187, 0.6)),
+        linear-gradient(rgba(227, 211, 187, 0.847), rgba(227, 211, 187, 0.742)),
         url("../assets/fondito.jpg");
     background-size: cover;
     background-position: center;
@@ -200,9 +199,10 @@ body {
     margin-bottom: 28px;
 }
 
-.titulo h1 {
-    font-family: 'Dr Sugiyama', cursive;
-    font-weight: 578;
+.titulo h2 {
+    font-family: var(--fuente);
+    font-weight: 500;
+
 }
 
 .contactos h5 {
@@ -214,11 +214,12 @@ body {
 .contactos p {
     font-family: 'Javanese Text', serif;
     line-height: 1.5;
+    font-size: .95rem;
     margin-bottom: 18px;
 }
 
 .contactos1 {
-    margin-left: 38px;
+    margin-left: 16px;
 
 }
 
@@ -227,7 +228,83 @@ body {
 }
 
 footer{
-    background-color: rgba(172, 128, 103, 1);
-    border-radius: 24px 24px 0 0;
-    background: linear-gradient(#8a5a44, #a9806a);
+  position: sticky;
+  top: 8px;
+  z-index: 10;
+  margin: 8px 6px 0;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 12px;
+  background: linear-gradient(#905a42, #ae8169);
+
 }
+
+footer img {
+  height: 34px;
+}
+
+
+/* ========== ESCRITORIO ========== */
+@media (min-width: 900px) {
+
+  /* Header: más ancho, centrado y con letra más grande */
+  .header {
+    max-width: 1100px;
+    margin: 14px auto 0;
+    padding: 12px 28px;
+  }
+  .header__logo { height: 52px; }
+  .header__logo-texto { height: 40px; }
+  .header__nav { gap: 28px; }
+  .header__enlace { font-size: 1rem; }
+  .boton--header { padding: 8px 22px; font-size: 1rem; }
+
+  /* Hero */
+  .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 28px 30px;
+  }
+  .hero__logo { width: 240px; }
+  .hero__texto {
+    max-width: 560px;
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+  .hero__gato { right: 8%; bottom: -40px; width: 90px; }
+
+  /* Productos: los 3 rombos en fila */
+  .productos {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 0 100px;
+  }
+  .producto,
+  .producto--izquierda,
+  .producto--derecha {
+    align-self: auto;
+    width: 340px;
+    margin: 0 -25px;           /* se acercan un poco entre sí */
+  }
+  .producto--oscuro { transform: translateY(50px); }  /* el del centro más abajo, en zigzag */
+  .producto__titulo { font-size: 1rem; }
+  .producto__texto { font-size: .8rem; }
+
+  /* Pedidos e historia: tarjeta más ancha */
+  .contenido {
+    max-width: 900px;
+    padding: 40px 48px 60px;
+  }
+  .contactos p { font-size: 1.05rem; }
+  .contactos1 { margin-left: 60px; }
+
+  /* Footer */
+  footer { text-align: center; padding: 20px 0; }
+  footer img { height: 50px; }
+}
+/*------------------------------------------------------------------------*/
